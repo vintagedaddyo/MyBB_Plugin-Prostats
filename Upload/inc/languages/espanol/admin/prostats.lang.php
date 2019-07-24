@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.2                               |
+| Name: ProStats 1.9.7.3                               |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: March 11, 2019                             |
+| Last edit: July 24, 2019                             |
 |_______________________________________________________|
 
 Information of this version:
@@ -36,12 +36,12 @@ $l['pstats_PDesc'] = 'Estadisticas profesionales de MyBB. ';
 $l['pstats_PWeb'] = 'http://prostats.wordpress.com';
 $l['pstats_PAuth'] = '<a href="mailto:SaeedGhMail@Gmail.com">SaeedGh</a> y <a href="http://my-bb.ir">AliReza Tofighi</a> Actualizado por <a href="http://community.mybb.com/user-6029.html">vintagedadyo</a>';
 $l['pstats_PAuthSite'] = '';
-$l['pstats_PVer'] = '1.9.7.2';
+$l['pstats_PVer'] = '1.9.7.3';
 $l['pstats_PGUID'] = '124b68d05dcdaf6b7971050baddf340f';
 $l['pstats_PCompat'] = '18*';
 
 
-$l['pstats_settings_link'] = '(<a href="index.php?module=config&action=change&search=prostats" style="color:#FF1493;">Ajustes</a>)<br/>';
+$l['pstats_settings_link'] = '<!--(<a href="index.php?module=config&action=change&search=prostats" style="color:#FF1493;">Ajustes</a>)<br/>//-->';
 
 
 //float_stats
@@ -194,6 +194,10 @@ $l['pstats_setting_28_description'] = '¡Esta opcion puede agregar un poco de di
 // setting 29
 $l['pstats_setting_29_title'] = 'Version ProStats';
 $l['pstats_setting_29_description'] = 'NO MODIFICAR ESTE AJUSTE';
+
+// setting 30
+$l['pstats_setting_30_title'] = 'ProStats Replies Display';
+$l['pstats_setting_30_description'] = 'Esto habilita o inhabilita la visualizacion del conteo de respuestas.';
 
 // cells switch 
 $l['pstats_switch_latest_posts'] = 'Latest_posts';

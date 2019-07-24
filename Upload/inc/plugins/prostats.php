@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.2                                |
+| Name: ProStats 1.9.7.3                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: March 11, 2019                             |
+| Last edit: July 24, 2019                             |
 |_______________________________________________________|
 
 Information of this version:
@@ -35,10 +35,11 @@ function prostats_g()
  global $mybb, $lang;
 
  $lang->load("prostats");
- 
+
  $mybb->psga['prostats_version'] = ''.$lang->pstats_PVer.'';
  $mybb->psga['update_popup_link'] = 'https://docs.google.com/uc?export=view&id=0B1io8D4cQytcemFVVFh3VXJzdWs';
  $mybb->psga['surprise_link'] = 'https://docs.google.com/uc?export=view&id=0B1io8D4cQytcV0dPSTBYTTFNN00';
+
 }
 
 if (!defined("IN_MYBB"))
@@ -498,7 +499,17 @@ function prostats_install()
  'disporder' => 90,
  'gid' => $gid
  );
- 
+
+ $ps[]= array(
+ 'name' => "ps_replies",
+ 'title' => $lang->pstats_setting_30_title,
+ 'description' => $lang->pstats_setting_30_description,
+ 'optionscode' => "yesno",
+ 'value' => ps_SetSettingsValue('ps_replies', '1'),
+ 'disporder' => 2,
+ 'gid' => $gid
+ );
+
  foreach ($ps as $p)
  {
  $db->insert_query("settings", $p);
@@ -1022,7 +1033,7 @@ EOT
 
  $templatearray = array(
  'title' => "prostats_newestposts_latest_posts",
- 'template' => $db->escape_string('<td>{$readstate_icon}<a href="{$threadlink}" title="{$subject_long}">{$subject} ({$newest_threads[\'replies\']})</a></td>'),
+ 'template' => $db->escape_string('<td>{$readstate_icon}<a href="{$threadlink}" title="{$subject_long}">{$subject} {$ps_replies}</a></td>'),
  'sid' => "-1"
  );
  $db->insert_query("templates", $templatearray);
@@ -1063,7 +1074,7 @@ function prostats_uninstall()
 {
  global $mybb, $db;
  
- $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_chkupdates','ps_surprise','ps_version')");
+ $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_chkupdates','ps_surprise','ps_version','ps_replies')");
  $db->delete_query("settinggroups", "name='prostats'");
  
  rebuild_settings();
@@ -1100,9 +1111,10 @@ function prostats_deactivate()
 function prostats_run_global()
 {
  global $mybb, $session;
- 
+
  if (isset($GLOBALS['templatelist']))
  {
+
  if ($mybb->settings['ps_enable'] && defined('THIS_SCRIPT'))
  {
  if (!$mybb->settings['ps_hidefrombots'] || empty($session->is_spider))
@@ -1121,7 +1133,7 @@ function prostats_run_global()
 
 function prostats_run_index($force = false)
 {
- global $mybb, $parser, $session, $unviewables, $prostats_tbl, $ps_header_index, $ps_footer_index, $ps_header_portal, $ps_footer_portal;
+ global $db, $mybb, $parser, $session, $unviewables, $prostats_tbl, $ps_header_index, $ps_footer_index, $ps_header_portal, $ps_footer_portal;
 
  if (!$mybb->settings['ps_enable']) {return false;}
 
@@ -1199,6 +1211,7 @@ function prostats_run_pre_output(&$contents)
 {
  global $mybb, $parser, $session, $prostats_tbl, $ps_header_index, $ps_footer_index, $ps_header_portal, $ps_footer_portal;
 
+
  if (!$mybb->settings['ps_enable']) {return false;}
  
  if ($mybb->settings['ps_hidefrombots'] && !empty($session->is_spider)) {return false;}
@@ -1229,6 +1242,9 @@ function prostats_run_pre_output(&$contents)
 function ps_GetNewestPosts($NumOfRows, $feed=false)
 {
  global $mybb, $db, $templates, $theme, $lang, $unviewables, $under_mod_forums_arr, $vcheck, $parser, $lightbulb, $trow, $newestposts_cols_name, $newestposts_cols, $colspan, $feeditem;
+
+
+
 
  if (!is_object($parser))
  {
@@ -1307,6 +1323,19 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
  $styledprefix = "";
  
  $highlight = ps_GetHighlight($newest_threads);
+
+
+// enable or disable replies count display
+ 
+ if ($mybb->settings['ps_replies'] == 0)
+ {
+ $ps_replies = '';
+ }
+ if ($mybb->settings['ps_replies'] == 1)
+ {
+ $ps_replies = '('.$newest_threads['replies'].')';
+ }
+
  
  if ($newest_threads['styledprefix'] && $mybb->settings['ps_latest_posts_prefix'])
  {
@@ -1450,7 +1479,7 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
  
  ++$loop_counter;
  }
- 
+
  eval("\$newestposts = \"".$templates->get("prostats_newestposts")."\";");
  
  return $newestposts;
@@ -1582,7 +1611,7 @@ function ps_GetMostViewed($NumOfRows)
  require_once MYBB_ROOT.'inc/class_parser.php';
  $parser = new postParser;
  }
- 
+
  $query = $db->query ("
  SELECT t.subject,t.tid,t.fid,t.lastpost,t.views,t.visible,tr.uid AS truid,tr.dateline 
  FROM ".TABLE_PREFIX."threads t 
@@ -2246,6 +2275,7 @@ function prostats_run_feed()
  }
  
  ps_GetNewestPosts($mybb->settings['ps_num_rows'], true);
+
  
  //echo '<pre>';print_r($feeditem);echo '</pre>';exit;//just for test! ;-)
 

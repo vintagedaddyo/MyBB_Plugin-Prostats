@@ -13,7 +13,7 @@ Github:
 https://github.com/vintagedaddyo/MyBB_Plugin-Prostats
 
 
-* current front-end localization completion:
+* current localization:
 
 - english
 - englishgb
@@ -21,12 +21,5 @@ https://github.com/vintagedaddyo/MyBB_Plugin-Prostats
 - french
 - italiano
 
-** current back-end localization support: 
-
-- english *done
-- englishgb *done
-- espanol * done
-- french * done
-- italianol *done
 
 Works with and intended to be used with: https://community.mybb.com/mods.php?action=view&pid=1127

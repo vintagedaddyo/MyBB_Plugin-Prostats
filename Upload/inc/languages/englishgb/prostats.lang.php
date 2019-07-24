@@ -8,7 +8,7 @@
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: March 10, 2019                             |
+| Last edit: July 24, 2019                             |
 |_______________________________________________________|
 
 Information of this version:
