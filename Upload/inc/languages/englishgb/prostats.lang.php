@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.2                               |
+| Name: ProStats 1.9.7.4                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: July 24, 2019                             |
+| Last edit: March 4, 2021                              |
 |_______________________________________________________|
 
 Information of this version:

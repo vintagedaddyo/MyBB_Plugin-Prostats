@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.3                               |
+| Name: ProStats 1.9.7.4                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: July 24, 2019                             |
+| Last edit: March 4, 2021                              |
 |_______________________________________________________|
 
 Information of this version:
@@ -36,7 +36,7 @@ $l['pstats_PDesc'] = 'Estadisticas profesionales de MyBB. ';
 $l['pstats_PWeb'] = 'http://prostats.wordpress.com';
 $l['pstats_PAuth'] = '<a href="mailto:SaeedGhMail@Gmail.com">SaeedGh</a> y <a href="http://my-bb.ir">AliReza Tofighi</a> Actualizado por <a href="http://community.mybb.com/user-6029.html">vintagedadyo</a>';
 $l['pstats_PAuthSite'] = '';
-$l['pstats_PVer'] = '1.9.7.3';
+$l['pstats_PVer'] = '1.9.7.4';
 $l['pstats_PGUID'] = '124b68d05dcdaf6b7971050baddf340f';
 $l['pstats_PCompat'] = '18*';
 
@@ -184,20 +184,12 @@ $l['pstats_setting_26_title'] = 'Activar el feed XML';
 $l['pstats_setting_26_description'] = "Muestra las estadisticas en formato XML para mostrarlas en otros sitios web. [<a href=\"http://community.mybb.com/thread-48686.html\" target=\"_blank\">Mas informacion</a>]";
 
 // setting 27
-$l['pstats_setting_27_title'] = 'Buscar actualizaciones';
-$l['pstats_setting_27_description'] = "Active esta configuracion y se le notificara cada vez que se lance una nueva versión. La notificacion se mostrara sobre la tabla de ProStats y solo sera visible para los administradores.";
+$l['pstats_setting_27_title'] = 'Version ProStats';
+$l['pstats_setting_27_description'] = 'NO MODIFICAR ESTE AJUSTE';
 
 // setting 28
-$l['pstats_setting_28_title'] = '¡Sorpresa!';
-$l['pstats_setting_28_description'] = '¡Esta opcion puede agregar un poco de diversion a su foro a veces! Probablemente sucederia una o dos veces al ano y solo los administradores pueden ver el resultado.';
-
-// setting 29
-$l['pstats_setting_29_title'] = 'Version ProStats';
-$l['pstats_setting_29_description'] = 'NO MODIFICAR ESTE AJUSTE';
-
-// setting 30
-$l['pstats_setting_30_title'] = 'ProStats Replies Display';
-$l['pstats_setting_30_description'] = 'Esto habilita o inhabilita la visualizacion del conteo de respuestas.';
+$l['pstats_setting_28_title'] = 'ProStats Replies Display';
+$l['pstats_setting_28_description'] = 'Esto habilita o inhabilita la visualizacion del conteo de respuestas.';
 
 // cells switch 
 $l['pstats_switch_latest_posts'] = 'Latest_posts';

@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.3                                |
+| Name: ProStats 1.9.7.4                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: July 24, 2019                             |
+| Last edit: March 4, 2021                              |
 |_______________________________________________________|
 
 Information of this version:
@@ -37,8 +37,6 @@ function prostats_g()
  $lang->load("prostats");
 
  $mybb->psga['prostats_version'] = ''.$lang->pstats_PVer.'';
- $mybb->psga['update_popup_link'] = 'https://docs.google.com/uc?export=view&id=0B1io8D4cQytcemFVVFh3VXJzdWs';
- $mybb->psga['surprise_link'] = 'https://docs.google.com/uc?export=view&id=0B1io8D4cQytcV0dPSTBYTTFNN00';
 
 }
 
@@ -200,7 +198,7 @@ function prostats_install()
  </div>
  
  <script type=\"text/javascript\">
- var settings_options = [\"ps_enable\", \"ps_index\", \"ps_portal\", \"ps_global_tag\", \"ps_format_name\", \"ps_highlight\", \"ps_latest_posts\", \"ps_latest_posts_prefix\", \"ps_chkupdates\"];
+ var settings_options = [\"ps_enable\", \"ps_index\", \"ps_portal\", \"ps_global_tag\", \"ps_format_name\", \"ps_highlight\", \"ps_latest_posts\", \"ps_latest_posts_prefix\"];
  var settings_text = [\"ps_subject_length\", \"ps_num_rows\", \"ps_date_format\", \"ps_date_format_ty\", \"ps_trow_message\", \"ps_latest_posts_cells\"];
  var settings_select = [\"ps_trow_message_pos\", \"ps_latest_posts_pos\", \"ps_cell_1\", \"ps_cell_2\", \"ps_cell_3\", \"ps_cell_4\", \"ps_cell_5\", \"ps_cell_6\"];
  var settings_selectforums = [\"ps_ignoreforums\"]; 
@@ -471,29 +469,9 @@ function prostats_install()
  );
  
  $ps[]= array(
- 'name' => "ps_chkupdates",
+ 'name' => "ps_version",
  'title' => $lang->pstats_setting_27_title,
  'description' => $lang->pstats_setting_27_description,
- 'optionscode' => "yesno",
- 'value' => ps_SetSettingsValue('ps_chkupdates', '1'),
- 'disporder' => 80,
- 'gid' => $gid
- );
- 
- $ps[]= array(
- 'name' => "ps_surprise",
- 'title' => $lang->pstats_setting_28_title,
- 'description' => $lang->pstats_setting_28_description,
- 'optionscode' => "yesno",
- 'value' => ps_SetSettingsValue('ps_surprise', '1'),
- 'disporder' => 85,
- 'gid' => $gid
- );
- 
- $ps[]= array(
- 'name' => "ps_version",
- 'title' => $lang->pstats_setting_29_title,
- 'description' => $lang->pstats_setting_29_description,
  'optionscode' => "text",
  'value' => $mybb->psga['prostats_version'],
  'disporder' => 90,
@@ -502,8 +480,8 @@ function prostats_install()
 
  $ps[]= array(
  'name' => "ps_replies",
- 'title' => $lang->pstats_setting_30_title,
- 'description' => $lang->pstats_setting_30_description,
+ 'title' => $lang->pstats_setting_28_title,
+ 'description' => $lang->pstats_setting_28_description,
  'optionscode' => "yesno",
  'value' => ps_SetSettingsValue('ps_replies', '1'),
  'disporder' => 2,
@@ -1074,7 +1052,7 @@ function prostats_uninstall()
 {
  global $mybb, $db;
  
- $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_chkupdates','ps_surprise','ps_version','ps_replies')");
+ $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_version','ps_replies')");
  $db->delete_query("settinggroups", "name='prostats'");
  
  rebuild_settings();
@@ -1974,18 +1952,6 @@ function ps_MakeTable()
  {
  eval("\$trow_message_down = \"".$templates->get("prostats_message")."\";");
  }
- }
- 
- if ($mybb->settings['ps_surprise'] && $mybb->user['uid'] && $mybb->usergroup['cancp'])
- {
- prostats_g();
- $remote_msg .= '<a href="http://prostats.wordpress.com/surprises/"><embed src="'.$mybb->psga['surprise_link'].'" type="image/svg+xml" /></a>';
- }
- 
- if ($mybb->settings['ps_chkupdates'] && $mybb->user['uid'] && $mybb->usergroup['cancp'])
- {
- prostats_g();
- $remote_msg .= '<a href="http://prostats.wordpress.com/"><embed src="'.$mybb->psga['update_popup_link'].'" type="image/svg+xml" /></a>';
  }
  
  eval("\$prostats = \"".$templates->get("prostats")."\";");
