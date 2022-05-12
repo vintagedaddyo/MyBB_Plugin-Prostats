@@ -22,7 +22,7 @@ https://github.com/vintagedaddyo/MyBB_Plugin-Prostats
 - italiano
 
 
-Works with and intended to be used with: https://community.mybb.com/mods.php?action=view&pid=1127
+Works with and intended to be used with: https://github.com/vintagedaddyo/MyBB_Plugin-Thanks
 
 
 -----------------------------------------------------------------------------------------------------ProStats (Professional statistics)
