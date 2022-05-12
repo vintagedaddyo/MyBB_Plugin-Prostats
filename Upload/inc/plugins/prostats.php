@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.4                                |
+| Name: ProStats 1.9.7.5                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: March 4, 2021                              |
+| Last edit: May 11, 2022                               |
 |_______________________________________________________|
 
 Information of this version:
@@ -132,7 +132,7 @@ function prostats_install()
  'description' => "".$lang->pstats_setting_1_description."
  <style type=\"text/css\">
  #row_setting_ps_enable td.first,
- #row_setting_ps_position td.first,
+ #row_setting_ps_position_p td.first, 
  #row_setting_ps_date_format_ty td.first,
  #row_setting_ps_trow_message_pos td.first,
  #row_setting_ps_latest_posts_pos td.first,
@@ -148,7 +148,7 @@ function prostats_install()
  #row_setting_ps_enable td.first {
  background-image: url(../images/prostats/ps_settings_vp.png);
  }
- #row_setting_ps_position td.first {
+ #row_setting_ps_position_p td.first {
  background-image: url(../images/prostats/ps_settings_ga.png);
  }
  #row_setting_ps_date_format_ty td.first {
@@ -269,12 +269,22 @@ function prostats_install()
  );
  
  $ps[]= array(
- 'name' => "ps_position",
+ 'name' => "ps_position_i",
  'title' => $lang->pstats_setting_7_title,
  'description' => $lang->pstats_setting_7_description,
  'optionscode' => "select\n0=".$lang->pstats_setting_7_option_1."\n1=".$lang->pstats_setting_7_option_2."",
- 'value' => ps_SetSettingsValue('ps_position', '1'),
+ 'value' => ps_SetSettingsValue('ps_position_i', '1'),
  'disporder' => 10,
+ 'gid' => $gid
+ );
+
+ $ps[]= array(
+ 'name' => "ps_position_p",
+ 'title' => $lang->pstats_setting_29_title,
+ 'description' => $lang->pstats_setting_29_description,
+ 'optionscode' => "select\n0=".$lang->pstats_setting_29_option_1."\n1=".$lang->pstats_setting_29_option_2."",
+ 'value' => ps_SetSettingsValue('ps_position_p', '1'),
+ 'disporder' => 11,
  'gid' => $gid
  );
  
@@ -1052,7 +1062,7 @@ function prostats_uninstall()
 {
  global $mybb, $db;
  
- $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_version','ps_replies')");
+ $db->delete_query("settings", "name IN ('ps_enable','ps_ignoreforums','ps_index','ps_portal','ps_position_i','ps_position_p','ps_format_name','ps_highlight','ps_subject_length','ps_num_rows','ps_date_format','ps_date_format_ty','ps_trow_message','ps_trow_message_pos','ps_latest_posts','ps_latest_posts_prefix','ps_latest_posts_cells','ps_latest_posts_pos','ps_cell_1','ps_cell_2','ps_cell_3','ps_cell_4','ps_cell_5','ps_cell_6','ps_hidefrombots','ps_global_tag','ps_xml_feed','ps_version','ps_replies')");
  $db->delete_query("settinggroups", "name='prostats'");
  
  rebuild_settings();
@@ -1139,11 +1149,11 @@ function prostats_run_index($force = false)
  
  $prostats_tbl = ps_MakeTable();
 
- if ($mybb->settings['ps_position'] == 0)
+ if ($mybb->settings['ps_position_i'] == 0)
  {
  $ps_header_index = $prostats_tbl;
  }
- else if ($mybb->settings['ps_position'] == 1)
+ else if ($mybb->settings['ps_position_i'] == 1)
  {
  $ps_footer_index = $prostats_tbl;
  }
@@ -1174,11 +1184,11 @@ function prostats_run_portal()
  
  $prostats_tbl = ps_MakeTable();
 
- if ($mybb->settings['ps_position'] == 0)
+ if ($mybb->settings['ps_position_p'] == 0)
  {
  $ps_header_portal = $prostats_tbl;
  }
- else if ($mybb->settings['ps_position'] == 1)
+ else if ($mybb->settings['ps_position_p'] == 1)
  {
  $ps_footer_portal = $prostats_tbl;
  }

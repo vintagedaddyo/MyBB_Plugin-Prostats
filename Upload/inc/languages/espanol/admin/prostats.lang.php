@@ -2,13 +2,13 @@
 /*
  _______________________________________________________
 |                                                       |
-| Name: ProStats 1.9.7.4                                |
+| Name: ProStats 1.9.7.5                                |
 | Type: MyBB Plugin                                     |
 | Author: SaeedGh (SaeehGhMail@Gmail.com)               |
 | Author2: AliReza Tofighi (http://my-bb.ir)            |
 | Quick simple edits for php 7.2 pkged by vintagedaddyo |
 | Support: http://prostats.wordpress.com/support/       |
-| Last edit: March 4, 2021                              |
+| Last edit: May 11, 2022                               |
 |_______________________________________________________|
 
 Information of this version:
@@ -36,7 +36,7 @@ $l['pstats_PDesc'] = 'Estadisticas profesionales de MyBB. ';
 $l['pstats_PWeb'] = 'http://prostats.wordpress.com';
 $l['pstats_PAuth'] = '<a href="mailto:SaeedGhMail@Gmail.com">SaeedGh</a> y <a href="http://my-bb.ir">AliReza Tofighi</a> Actualizado por <a href="http://community.mybb.com/user-6029.html">vintagedadyo</a>';
 $l['pstats_PAuthSite'] = '';
-$l['pstats_PVer'] = '1.9.7.4';
+$l['pstats_PVer'] = '1.9.7.5';
 $l['pstats_PGUID'] = '124b68d05dcdaf6b7971050baddf340f';
 $l['pstats_PCompat'] = '18*';
 
@@ -89,8 +89,8 @@ $l['pstats_setting_6_title'] = 'Lista de ignorados';
 $l['pstats_setting_6_description'] = 'Los foros no se muestran en ProStats. Para seleccionar varios elementos, mantenga presionada la tecla Ctrl y haga clic en cada uno de los elementos. Para deseleccionar elementos, mantenga presionada la tecla Ctrl y haga clic en ellos.';
 
 // setting 7
-$l['pstats_setting_7_title'] = 'Posicion de la tabla en el indice y el portal';
-$l['pstats_setting_7_description'] = 'Posicion de las estadisticas en las paginas de indice y portal.';
+$l['pstats_setting_7_title'] = 'Posicion de la tabla en el indice';
+$l['pstats_setting_7_description'] = 'Posicion de las estadisticas en las pagina de indice.';
 
 $l['pstats_setting_7_option_1'] = 'Arriba (Encabezado)';
 $l['pstats_setting_7_option_2'] = 'Parte inferior (pie de página)';
@@ -197,5 +197,12 @@ $l['pstats_switch_date'] = 'Date';
 $l['pstats_switch_starter'] = 'Starter';
 $l['pstats_switch_last_sender'] = 'Last_sender';
 $l['pstats_switch_forum'] = 'Forum';
+
+// setting 29
+$l['pstats_setting_29_title'] = 'Posicion de la tabla en el portal';
+$l['pstats_setting_29_description'] = 'Posicion de las estadisticas en las paginas de portal.';
+
+$l['pstats_setting_29_option_1'] = 'Arriba (Encabezado)';
+$l['pstats_setting_29_option_2'] = 'Parte inferior (pie de pagina)';
 
 ?>
