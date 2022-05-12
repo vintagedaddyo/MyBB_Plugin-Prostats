@@ -1,4 +1,3 @@
 # MyBB_Plugin-Prostats
 
-
-Can be used with https://github.com/vintagedaddyo/MyBB_Plugin-Thanks
+Works with and intended to be used with: https://github.com/vintagedaddyo/MyBB_Plugin-Thanks
