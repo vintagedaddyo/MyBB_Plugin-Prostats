@@ -1314,14 +1314,14 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
  
  $highlight = ps_GetHighlight($newest_threads);
 
-
-// enable or disable replies count display
- 
- if (isset($mybb->settings['ps_replies']) == 0)
+ // 1320 sort warning
+ $ps_replies = isset($ps_replies) ? $ps_replies : '';
+ // enable or disable replies count display 
+ if ($mybb->settings['ps_replies'] == 0)
  {
  $ps_replies = '';
  }
- if (isset($mybb->settings['ps_replies']) == 1)
+ if ($mybb->settings['ps_replies'] == 1)
  {
  $ps_replies = '('.$newest_threads['replies'].')';
  }
