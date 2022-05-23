@@ -29,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
+$highlight = isset($highlight) ? $highlight : '';
+$newestposts_row = isset($newestposts_row) ? $newestposts_row : '';
 
 function prostats_g()
 {
@@ -1136,7 +1138,7 @@ function prostats_run_index($force = false)
  if (ceil($mybb->settings['ps_num_rows']) != $mybb->settings['ps_num_rows'] || ceil($mybb->settings['ps_subject_length']) != $mybb->settings['ps_subject_length']){return false;}
  if (intval($mybb->settings['ps_num_rows']) < 3) {return false;}
  
- if (strtolower($mybb->input['stats'])=='xml' && $mybb->settings['ps_xml_feed'])
+ if (strtolower(isset($mybb->input['stats']))=='xml' && $mybb->settings['ps_xml_feed'])
  {
  prostats_run_feed();
  exit;
@@ -1319,7 +1321,7 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
  {
  $ps_replies = '';
  }
- if ($mybb->settings['ps_replies'] == 1)
+ if (isset($mybb->settings['ps_replies']) == 1)
  {
  $ps_replies = '('.$newest_threads['replies'].')';
  }
@@ -1426,7 +1428,8 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
  default: NULL;
  }
  }
-
+ // 1432 sort warning
+ $newestposts_row = isset($newestposts_row) ? $newestposts_row : '';
  eval("\$newestposts_row .= \"".$templates->get("prostats_newestposts_row")."\";");
  
  
@@ -1528,6 +1531,8 @@ function ps_GetMostReplies($NumOfRows)
  $threadlink = $mybb->settings['bburl'].'/'.get_thread_link($tid);
  
  eval("\$readstate_icon = \"".$templates->get("prostats_readstate_icon")."\";");
+  // 1534 sort warning
+ $mostreplies_row = isset($mostreplies_row) ? $mostreplies_row : '';
  eval("\$mostreplies_row .= \"".$templates->get("prostats_mostreplies_row")."\";");
  }
  eval("\$column_mostreplies = \"".$templates->get("prostats_mostreplies")."\";");
@@ -1554,7 +1559,8 @@ function ps_GetMostReputation($NumOfRows)
  $profilelink = $mybb->settings['bburl'].'/'.get_profile_link($uid);
  $repscount = intval($most_reputations['reputation']);
  $username = ps_FormatName(htmlspecialchars_uni($most_reputations['username']), $most_reputations['usergroup'], $most_reputations['displaygroup']);
- 
+ // 1563 sort warning
+ $mostreputation_row = isset($mostreputation_row) ? $mostreputation_row : ''; 
  eval("\$mostreputation_row .= \"".$templates->get("prostats_mostreputation_row")."\";");
  }
  eval("\$column_mostreputation = \"".$templates->get("prostats_mostreputation")."\";");
@@ -1569,6 +1575,8 @@ function ps_GetMostThanks($NumOfRows)
  
  if (!$db->field_exists("thxcount","users"))
  {
+  // 1575 sort warning
+ $mostthanks_row = isset($mostthanks_row) ? $mostthanks_row : '';   
  $mostthanks_row .= "<tr class=\"smalltext\"><td colspan=\"2\" align=\"center\"><small>".$lang->prostats_err_thxplugin."</small></td></tr>";
  eval("\$column_mostthanks = \"".$templates->get("prostats_mostthanks")."\";");
  return $column_mostthanks;
@@ -1582,6 +1590,8 @@ function ps_GetMostThanks($NumOfRows)
  $username = ps_FormatName(htmlspecialchars_uni($most_thanks['username']), $most_thanks['usergroup'], $most_thanks['displaygroup']);
  $thxnum = $most_thanks['thxcount'];
  $profilelink = $mybb->settings['bburl'].'/'.get_profile_link($uid); 
+   // 1593 sort warning
+ $mostthanks_row = isset($mostthanks_row) ? $mostthanks_row : '';  
  eval("\$mostthanks_row .= \"".$templates->get("prostats_mostthanks_row")."\";");
  }
  eval("\$column_mostthanks = \"".$templates->get("prostats_mostthanks")."\";");
@@ -1644,6 +1654,8 @@ function ps_GetMostViewed($NumOfRows)
  $threadlink = $mybb->settings['bburl'].'/'.get_thread_link($tid);
  
  eval("\$readstate_icon = \"".$templates->get("prostats_readstate_icon")."\";");
+  // 1654 sort warning
+ $mostviews_row = isset($mostviews_row) ? $mostviews_row : '';
  eval("\$mostviews_row .= \"".$templates->get("prostats_mostviews_row")."\";");
  }
  eval("\$column_mostviews = \"".$templates->get("prostats_mostviews")."\";");
@@ -1682,7 +1694,8 @@ function ps_GetNewMembers($NumOfRows)
  $regdate = my_date($mybb->settings['ps_date_format_ty'], $newest_members['regdate'], NULL, 1);
  }
  }
-
+ // 1691 sort warning
+ $newmembers_row = isset($newestmembers_row) ? $newmembers_row : '';
  eval("\$newmembers_row .= \"".$templates->get("prostats_newmembers_row")."\";");
  }
  eval("\$column_newmembers = \"".$templates->get("prostats_newmembers")."\";");
@@ -1754,7 +1767,8 @@ function ps_GetTopPosters($NumOfRows)
  $postnum = $topposters['postnum'];
  
  $profilelink = $mybb->settings['bburl'].'/'.get_profile_link($uid);
- 
+ // 1766 sort warning
+ $topposters_row = isset($topposters_row) ? $topposters_row : ''; 
  eval("\$topposters_row .= \"".$templates->get("prostats_topposters_row")."\";");
  }
  eval("\$column_topposters = \"".$templates->get("prostats_topposters")."\";");
@@ -1952,18 +1966,20 @@ function ps_MakeTable()
  }
 
  $prostats_content = $left_cols . $middle_cols . $right_cols;
- 
+   // 1979 sort warning
+ $trow_message_top = isset($trow_message_top) ? $trow_message_top : '';
+   // 1979 sort warning
+ $trow_message_down = isset($trow_message_down) ? $trow_message_down : ''; 
  if ($mybb->settings['ps_trow_message'] != "") {
  $prostats_message = unhtmlentities(htmlspecialchars_uni($mybb->settings['ps_trow_message']));
- if ($mybb->settings['ps_trow_message_pos'] == 0) {
+ if ($mybb->settings['ps_trow_message_pos'] == 0) {    
  eval("\$trow_message_top = \"".$templates->get("prostats_message")."\";");
  }
  else
- {
+ {   
  eval("\$trow_message_down = \"".$templates->get("prostats_message")."\";");
  }
  }
- 
  eval("\$prostats = \"".$templates->get("prostats")."\";");
  return $prostats;
 }
@@ -2188,7 +2204,8 @@ function ps_GetHighlight($query_arr=array())
  {
  $highlight = $highlight_arr['style']['undermod'];
  }
- 
+ // 2194 sort warning
+ $highlight = isset($highlight) ? $highlight : '';
  return $highlight;
 }
 

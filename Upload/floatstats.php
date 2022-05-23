@@ -102,10 +102,16 @@ switch($config['database']['type'])
 
 if(!extension_loaded($db->engine)){ exit; }
 
-define("TABLE_PREFIX", $config['database']['table_prefix']);
+// moved during sort warning
+require_once MYBB_ROOT."inc/init.php";
+// removed during sort warning already defined init
+//define("TABLE_PREFIX", $config['database']['table_prefix']);
 $db->connect($config['database']);
 $db->set_table_prefix(TABLE_PREFIX);
 $db->type = $config['database']['type'];
+
+
+
 
 // get uset data
 $udata = get_user($target['uid']);
@@ -114,7 +120,8 @@ $udata = get_user($target['uid']);
 $_COOKIE['mybbuser'] = $udata['uid'].'_'.$udata['loginkey'];
 
 // set the script name
-define('THIS_SCRIPT', $target['script']);
+// sort warning already defined
+//define('THIS_SCRIPT', $target['script']);
 
 // default template lists
 switch ($target['script'])
@@ -140,7 +147,8 @@ switch ($target['script'])
 	default: exit;
 }
 
-require_once MYBB_ROOT."inc/init.php";
+// moved during sort warning
+//require_once MYBB_ROOT."inc/init.php";
 
 // apply settings on the fly
 foreach ($post_arr as $p_k => $p_v)
@@ -158,7 +166,7 @@ if ($_GET['fs_action'] != 'preview')
 //$mybb->debug_mode = true;
 
 // set the optional input (URL query)
-if (is_array($target['input']) && count($target['input']))
+if (is_array(isset($target['input'])) && count(isset($target['input'])))
 {
 	$mybb->input[$target['input']['key']] = $target['input']['value'];
 }
