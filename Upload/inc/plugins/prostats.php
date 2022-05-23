@@ -1107,7 +1107,7 @@ function prostats_run_global()
 
  if ($mybb->settings['ps_enable'] && defined('THIS_SCRIPT'))
  {
- if (!$mybb->settings['ps_hidefrombots'] || empty($session->is_spider))
+ if (!isset($mybb->settings['ps_hidefrombots']) || empty($session->is_spider))
  {
  if (($mybb->settings['ps_index'] && THIS_SCRIPT == 'index.php')
  || ($mybb->settings['ps_portal'] && THIS_SCRIPT == 'portal.php')
@@ -1204,7 +1204,7 @@ function prostats_run_pre_output(&$contents)
 
  if (!$mybb->settings['ps_enable']) {return false;}
  
- if ($mybb->settings['ps_hidefrombots'] && !empty($session->is_spider)) {return false;}
+ if (isset($mybb->settings['ps_hidefrombots']) && !empty($session->is_spider)) {return false;}
  
  if (!is_object($parser))
  {
@@ -1317,7 +1317,7 @@ function ps_GetNewestPosts($NumOfRows, $feed=false)
 
 // enable or disable replies count display
  
- if ($mybb->settings['ps_replies'] == 0)
+ if (isset($mybb->settings['ps_replies']) == 0)
  {
  $ps_replies = '';
  }

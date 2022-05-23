@@ -56,7 +56,7 @@ $l['prostats_replies'] = 'Réponses';
 $l['prostats_views'] = 'Vues';
 $l['prostats_subject'] = 'Titre';
 
-$l['prostats_err_thxplugin'] = 'Veuillez installer le plug-in <a href="http://prostats.wordpress.com/support/"> Merci </a>.';
+$l['prostats_err_thxplugin'] = 'Veuillez installer le plug-in <a href="https://github.com/vintagedaddyo/MyBB_Plugin-Thanks/"> Merci </a>.';
 $l['prostats_err_undefind'] = 'Undefind';
 
 $l['prostats_disabled'] = 'Vous ne pouvez pas utiliser la fonctionnalité de prostate car elle a été désactivée par l’administrateur.';

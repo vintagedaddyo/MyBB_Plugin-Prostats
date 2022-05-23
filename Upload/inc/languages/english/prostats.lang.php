@@ -56,7 +56,7 @@ $l['prostats_replies'] = 'Replies';
 $l['prostats_views'] = 'Views';
 $l['prostats_subject'] = 'Title';
 
-$l['prostats_err_thxplugin'] = 'Please install the <a href="http://prostats.wordpress.com/support/">Thanks</a> plugin.';
+$l['prostats_err_thxplugin'] = 'Please install the <a href="https://github.com/vintagedaddyo/MyBB_Plugin-Thanks/">Thanks</a> plugin.';
 $l['prostats_err_undefind'] = 'Undefind';
 
 $l['prostats_disabled'] = 'You cannot use the prostats functionality as it has been disabled by the Administrator.';

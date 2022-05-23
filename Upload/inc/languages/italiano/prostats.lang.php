@@ -56,7 +56,7 @@ $l['prostats_replies'] = 'Risposte';
 $l['prostats_views'] = 'Visualizzazioni';
 $l['prostats_subject'] = 'Titolo';
 
-$l['prostats_err_thxplugin'] = 'Installa il <a href="http://prostats.wordpress.com/support/">Grazie</a> plugin.';
+$l['prostats_err_thxplugin'] = 'Installa il <a href="https://github.com/vintagedaddyo/MyBB_Plugin-Thanks/">Grazie</a> plugin.';
 $l['prostats_err_undefind'] = 'Undefind';
 
 $l['prostats_disabled'] = 'Non puoi usare la funzionalità di prostats come è stata disabilitata dall\'amministratore.';
