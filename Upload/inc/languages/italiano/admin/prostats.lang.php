@@ -41,7 +41,7 @@ $l['pstats_PGUID'] = '124b68d05dcdaf6b7971050baddf340f';
 $l['pstats_PCompat'] = '18*';
 
 
-$l['pstats_settings_link'] = '<!--(<a href="index.php?module=config&action=change&search=prostats" style="color:#FF1493;">impostazioni</a>)<br/>-->';
+$l['pstats_settings_link'] = '(<a href="index.php?module=config&action=change&search=prostats" style="color:#FF1493;">impostazioni</a>)<br/>';
 
 
 //float_stats
